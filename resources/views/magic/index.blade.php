@@ -23,6 +23,7 @@
   			  <div class="input-group">
    				<input type="text" class="form-control" id="question" placeholder="Question ?" name="question" required>
   				</div>
+      <br>
       <div id="successmagic"></div>
   		<button type="submit" class="btn btn-success">Ask!</button>
       </div>

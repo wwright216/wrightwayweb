@@ -14,7 +14,6 @@ $(function() {
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             var question = $("input#question").val();
             $.ajax({
-                dataType: 'JSON',
                 url: "/magic",
                 type: "POST",
                 data: {

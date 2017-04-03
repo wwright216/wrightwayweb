@@ -28,7 +28,17 @@
             obj.style.height=newheight>700?'700px':newheight+'px';
         }
     </script>
+    
+    <!-- Google Analytics Script -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
+      ga('create', 'UA-96670800-1', 'auto');
+      ga('send', 'pageview');
+    </script>
 </head>
 
 <body id="page-top" class="index">
@@ -109,7 +119,7 @@
                     </a>
                 </div>
                 <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal2" class="portfolio-link" data-toggle="modal">
+                    <a href="/quiz" data-target="#portfolioModal2" class="portfolio-link" data-toggle="modal">
                         <div class="caption">
                             <div class="caption-content">
                                 <i class="fa fa-search-plus fa-3x"></i>
@@ -149,7 +159,7 @@
                     </a>
                 </div>
                 <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">
+                    <a href="/contact" data-target="#portfolioModal3" class="portfolio-link" data-toggle="modal">
                         <div class="caption">
                             <div class="caption-content">
                                 <i class="fa fa-search-plus fa-3x"></i>
@@ -285,51 +295,11 @@
     </div>
     <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                    <div class="modal-body">
-                            <h2>Man City Quiz</h2>
-                            <hr class="star-primary">
-                            <img src="manchester-city-logo.png" class="img-responsive img-centered" alt="">
-                            <div class="container">
-                                <iframe src="/quiz" frameborder="0" width="100%" onload='javascript:resizeIframe(this);'>
-                                </iframe>
-                            </div>
-                    </div>
-                    <div class="modal-footer">
-                        <div class="clearfix text-center">
-                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>Close</button>
-                        </div>
-                    </div>
             </div>
         </div>
     </div>
     <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                    <div class="modal-body">
-                            <img src="img/portfolio/contact.png" class="img-responsive img-centered" alt="">
-                            <div class="container">
-                                <iframe src="/contact" frameborder="0" width="100%" onload='javascript:resizeIframe(this);'>
-                                </iframe>
-                            </div>
-                    </div>
-                    <div class="modal-footer">
-                        <div class="clearfix text-center">
-                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>Close</button>
-                        </div>
-                    </div>
             </div>
         </div>
     </div>
@@ -360,7 +330,7 @@
                             <img src="img/portfolio/safe.png" class="img-responsive img-centered" alt="">
                             <p>To use this section, you must <a href="/login">Click Here</a></p>
                             <p>This area has tools like creating your own ToDo List. All behind secure login.</p>
-                            <button id="btnSubmit" type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                            <button id="ContactbtnSubmit" type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
                         </div>
                     </div>
                 </div>
@@ -374,9 +344,9 @@
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
     <!-- Contact Form JavaScript -->
     <script src="js/jqBootstrapValidation.js"></script>
-    <script src="js/contact_me.js"></script>
+    <script src="/js/contact_me.js"></script>
     <!-- Plugin JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 
     <!-- Site JavaScript -->
     <script src="js/freelancer.min.js"></script>

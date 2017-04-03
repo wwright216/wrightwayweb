@@ -41,6 +41,3 @@
 
 @include ('layouts.errors')
 @endsection
-@section('jsfooter')
-    <script src="/js/weather.js"></script>
-@endsection

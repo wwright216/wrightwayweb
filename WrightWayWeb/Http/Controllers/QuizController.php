@@ -20,8 +20,6 @@ class QuizController extends Controller
     		'Question3' => 'required',
     		'Question4' => 'required'
     		]);
-    	//grade the quiz
-    	// $grade = new Quiz;
     	$answer1 = request('Question1');
     	$answer2 = request('Question2');
         $answer3 = request('Question3');
@@ -32,6 +30,7 @@ class QuizController extends Controller
         if ($answer3 == "B") {$totalCorrect++;}
         if ($answer4 == "D") {$totalCorrect++;}
         $score = ($totalCorrect / 4 * 100);
-        return view ('quiz.results', compact('score'));
+        $response = (String) view ('quiz.results', compact('score'))->render();
+        return response()->json($response, 200);
     }
 }

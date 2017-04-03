@@ -16,6 +16,5 @@ class MagicController extends Controller
     	srand((double)microtime() * 1000000);
     	$answer = $question ? $answers [rand(0, (sizeof($answers)-1))] : "I can only answer";
         return response()->json($answer, 200);
-      	// return view ('magic.show', compact('answeroutput'));
     }
 }

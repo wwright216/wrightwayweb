@@ -1,6 +1,5 @@
 @extends ('layouts.master')
 @section ('content')
-
 <div class="modal-header">
   <div class="close-modal" data-dismiss="modal">
     <div class="lr">
@@ -15,7 +14,7 @@
   	<p align="center">The notorious magic 8-ball knows all! Ask a question below to see your fortune.
     </p>
     </div>
-  <form class="form-horizontal" method="POST" action="/magic" id="magicForm">
+  <form class="form-horizontal" method="POST" action="#" id="magicForm">
   {{ csrf_field() }}
   		<div class="form-group">
   			<label class="sr-only" for="question">Question:
@@ -23,8 +22,9 @@
   			  <div class="input-group">
    				<input type="text" class="form-control" id="question" placeholder="Question ?" name="question" required>
   				</div>
+      <br>
       <div id="successmagic"></div>
-  		<button type="submit" class="btn btn-success">Ask!</button>
+  		<button type="submit" id= "magicSubmit" class="btn btn-success">Ask!</button>
       </div>
   </form>
   <div class="modal-footer">
@@ -35,7 +35,4 @@
   </div>
 </div>
 @include ('layouts.errors')
-@endsection
-@section('jsfooter')
-    <script src="/js/magic.js"></script>
 @endsection

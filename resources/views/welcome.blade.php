@@ -21,14 +21,6 @@
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-    <!--Reize iframe -->
-    <script type="text/javascript">
-        function resizeIframe(obj){
-            var newheight=obj.contentWindow.document.body.scrollHeight;
-            obj.style.height=newheight>700?'700px':newheight+'px';
-        }
-    </script>
-    
     <!-- Google Analytics Script -->
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -39,6 +31,23 @@
       ga('create', 'UA-96670800-1', 'auto');
       ga('send', 'pageview');
     </script>
+    <!-- Unit Conversion Helper Script -->
+    <script type="text/javascript">
+      function changeStandard() {
+         document.getElementById('frmname').value = 1;
+         document.getElementById('unitAmount').id = 'none';
+         document.getElementsByName('unitAmountStandard')[0].id = 'unitAmount';
+         document.getElementsByName('unitMetric')[0].id = 'none';
+         document.getElementsByName('unitStandard')[0].id = 'unit';
+        }
+      function changeMetric() {
+         document.getElementById('frmname').value = 2;
+         document.getElementById('unitAmount').id = 'none';
+         document.getElementsByName('unitAmountMetric')[0].id = 'unitAmount';
+         document.getElementsByName('unitStandard')[0].id = 'none';
+         document.getElementsByName('unitMetric')[0].id = 'unit';
+        }
+      </script>
 </head>
 
 <body id="page-top" class="index">

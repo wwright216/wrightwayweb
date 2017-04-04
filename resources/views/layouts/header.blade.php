@@ -38,5 +38,22 @@
       ga('create', 'UA-96670800-1', 'auto');
       ga('send', 'pageview');
     </script>
+    <!-- Unit Conversion Helper Script -->
+    <script type="text/javascript">
+  function changeStandard() {
+     document.getElementById('frmname').value = 1;
+     document.getElementById('unitAmount').id = 'none';
+     document.getElementsByName('unitAmountStandard')[0].id = 'unitAmount';
+     document.getElementsByName('unitMetric')[0].id = 'none';
+     document.getElementsByName('unitStandard')[0].id = 'unit';
+    }
+  function changeMetric() {
+     document.getElementById('frmname').value = 2;
+     document.getElementById('unitAmount').id = 'none';
+     document.getElementsByName('unitAmountMetric')[0].id = 'unitAmount';
+     document.getElementsByName('unitStandard')[0].id = 'none';
+     document.getElementsByName('unitMetric')[0].id = 'unit';
+    }
+      </script>
 </head>
 <body>

@@ -21,7 +21,7 @@ class unitConversionController extends Controller
 		return response()->json($data, 200);
 		}
 		if ($frmname == 2){
-		$convertedUnit = ($unit == 'british pound'? 'Dollar(s)' : ($unit == 'kilgram'? 'Pound(s)' : ($unit == 'kilometer'? 'Mile(s)' : ($unit =='liter'? 'Quart(s)' : ($unit == 'meter'? 'Yards(s)' : 'Yard(s)')))));
+		$convertedUnit = ($unit == 'british pound'? 'Dollar(s)' : ($unit == 'kilogram'? 'Pound(s)' : ($unit == 'kilometer'? 'Mile(s)' : ($unit =='liter'? 'Quart(s)' : ($unit == 'meter'? 'Yards(s)' : 'Yard(s)')))));
 		$convertedAmount = $amount / ($unit == 'british pound'? .81 : ($unit == 'kilogram'? .453592 : ($unit == 'kilometer'? 1.60934 : ($unit == 'liter'? .946353 : ($unit == 'meter'? .9144 : 1)))));
 		$data = (String) view (('unitConversion.result'), compact('unit', 'amount', 'convertedUnit', 'convertedAmount'))->render();
 		return response()->json($data, 200);

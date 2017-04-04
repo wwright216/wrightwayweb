@@ -1,25 +1,5 @@
 @extends ('layouts.master')
 @section ('content')
-<script type="text/javascript">
-  function changeStandard() {
-     document.getElementById('frmname').value = 1;
-     document.getElementById('unitAmount').id = 'none';
-     document.getElementsByName('unitAmountStandard')[0].id = 'unitAmount';
-     document.getElementsByName('unitMetric')[0].id = 'none';
-     document.getElementsByName('unitStandard')[0].id = 'unit';
-
-}
-    function changeMetric() {
-     document.getElementById('frmname').value = 2;
-     document.getElementById('unitAmount').id = 'none';
-     document.getElementsByName('unitAmountMetric')[0].id = 'unitAmount';
-     document.getElementsByName('unitStandard')[0].id = 'none';
-     document.getElementsByName('unitMetric')[0].id = 'unit';
-
-
-}
-</script>
-<meta name="csrf-token" content="{{ csrf_token() }}">
 <div class="modal-header">
   <div class="close-modal" data-dismiss="modal">
     <div class="lr">
@@ -37,7 +17,8 @@ Using the tool below, please enter the value you would like to convert and selec
 <div class="container">
 <div class="col-md-5 col-sm-5 col-lg-5" style="float: left;">
 <h5 align="center">Standard to Metric</h5>
-<form class="form-inline" action="#" method="POST" id="convertStandard" value="1">
+<form class="form-inline" action="#" method="POST" id="convertStandard">
+<meta name="csrf-token" content="{{ csrf_token() }}">
   {{ csrf_field() }}
   <input type="hidden" id="frmname" value="">
   <div class="form-group">
@@ -60,7 +41,8 @@ Using the tool below, please enter the value you would like to convert and selec
 </div>
 <div class="col-md-5 col-sm-5 col-lg-5" style="float: right;">
 <h5 align="center">Metric to Standard</h5>
-<form class="form-inline" action="#" method="POST" id="convertMetric" value="2">
+<form class="form-inline" action="#" method="POST" id="convertMetric">
+<meta name="csrf-token" content="{{ csrf_token() }}">
   {{ csrf_field() }}
   <div class="form-group">
     <label class="sr-only" for="unitAmount">Amount</label>

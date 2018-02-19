@@ -9,14 +9,14 @@ use DB;
 
 class TasksController extends Controller
 {
-    public function index()
+    public function index($message = '')
     {
         $tasks = DB::table('tasks')->where([
             ['user_id', Auth::user()->id],
             ['completed', 0]
             ])->get();
 
-        return view('tasks.index', compact('tasks'));
+        return view('tasks.index', compact('tasks', 'message'));
     }
 
     public function show(Task $task)
@@ -33,25 +33,15 @@ class TasksController extends Controller
 
         $newtask->save();
 
-        echo <<<JavaScript
-<script>
-    window.alert('Task Successfully Added')
-    window.location.href='/tasks'
-</script>
-JavaScript;
+        return $this->index("Successfully added {$newtask->title}");
     }
 
     public function completed()
     {
-        $task_id = request('task_id');
+        $task            = (new Task)->where('id', request('task_id'))->first();
+        $task->completed = 1;
+        $task->save();
 
-        DB::table('tasks')->where('id', $task_id)->update(['completed' => 1]);
-
-        echo <<<JavaScript
-<script>
-    window.alert('Task Marked as Complete')
-    window.location.href='/tasks'
-</script>
-JavaScript;
+        return $this->index("Successfully marked task {$task->title} as completed");
     }
 }

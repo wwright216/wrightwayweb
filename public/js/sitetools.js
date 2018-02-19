@@ -1,97 +1,86 @@
-/////////////////////////////////////
-// Magic 8 Ball Function
-/////////////////////////////////////
+/**
+ * Magic 8 Ball Function
+ */
 
 $(function() {
 
-    $("#magicForm input").jqBootstrapValidation({
+    $('#magicForm input').jqBootstrapValidation({
         preventSubmit: true,
         submitError: function($form, event, errors) {
-            // additional error messages or events
         },
         submitSuccess: function($form, event) {
-            // Prevent spam click and default submit behaviour
-            $("#magicSubmit").attr("disabled", true);
+            $('#magicSubmit').attr('disabled', true);
             event.preventDefault();
-            
-            // get values from FORM
-            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-            var question = $("input#question").val();
+
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content'),
+                question   = $('input#question').val();
             $.ajax({
-                url: "/magic",
-                type: "POST",
+                url: '/magic',
+                type: 'POST',
                 data: {
-                    _token: CSRF_TOKEN,
+                    _token  : CSRF_TOKEN,
                     question: question
                 },
                 cache: false,
                 success: function(data, textStatus) {
-                    // Enable button & show success message
-                    $("#magicSubmit").attr("disabled", false);
-                    $('#successmagic').html("<div class='alert alert-success'>");
-                    $('#successmagic > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
-                        .append("</button>");
+                    $('#magicSubmit').attr('disabled', false);
+                    $('#successmagic').html('<div class=\'alert alert-success\'>');
+                    $('#successmagic > .alert-success').html('<button type=\'button\' class=\'close\' data-dismiss=\'alert\' aria-hidden=\'true\'>&times;')
+                        .append('</button>');
                     $('#successmagic > .alert-success')
-                        .append("<strong>" + data + "</strong>");
+                        .append('<strong>' + data + '</strong>');
                     $('#successmagic > .alert-success')
                         .append('</div>');
-
-                    //clear all fields
-                    $('#magicForm').trigger("reset");
+                    $('#magicForm').trigger('reset');
                 },
                 error: function() {
-                    // Fail message
-                    $('#successmagic').html("<div class='alert alert-danger'>");
-                    $('#successmagic > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
-                        .append("</button>");
-                    $('#successmagic > .alert-danger').append("<strong>Something went wrong. Please ask another question.</strong>");
+                    $('#successmagic').html('<div class=\'alert alert-danger\'>');
+                    $('#successmagic > .alert-danger').html('<button type=\'button\' class=\'close\' data-dismiss=\'alert\' aria-hidden=\'true\'>&times;')
+                        .append('</button>');
+                    $('#successmagic > .alert-danger').append('<strong>Something went wrong. Please ask another question.</strong>');
                     $('#successmagic > .alert-danger').append('</div>');
-                    //clear all fields
-                    $('#magicForm').trigger("reset");
+                    $('#magicForm').trigger('reset');
                 },
             });
         },
         filter: function() {
-            return $(this).is(":visible");
+            return $(this).is(':visible');
         },
     });
 
-    $("a[data-toggle=\"tab\"]").click(function(e) {
+    $('a[data-toggle=\'tab\']').click(function(e) {
         e.preventDefault();
-        $(this).tab("show");
+        $(this).tab('show');
     });
 });
 
-// When clicking on Full hide fail/success boxes
 $('#question').focus(function() {
     $('#successmagic').html('');
 });
 
-/////////////////////////////////////
-// Quiz Function
-/////////////////////////////////////
+/**
+ * Quiz Function
+ */
 
 $(function() {
 
-    $("#quizForm input").jqBootstrapValidation({
+    $('#quizForm input').jqBootstrapValidation({
         preventSubmit: true,
         submitError: function($form, event, errors) {
-            // additional error messages or events
         },
         submitSuccess: function($form, event) {
-            // Prevent spam click and default submit behaviour
-            $("#quizSubmit").attr("disabled", true);
+            $('#quizSubmit').attr('disabled', true);
             event.preventDefault();
-            
-            // get values from FORM
-            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-            var Question1 = $("input#Question1:checked").val();
-            var Question2 = $("input#Question2:checked").val();
-            var Question3 = $("input#Question3:checked").val();
-            var Question4 = $("input#Question4:checked").val();
+
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content'),
+                Question1  = $('input#Question1:checked').val(),
+                Question2  = $('input#Question2:checked').val(),
+                Question3  = $('input#Question3:checked').val(),
+                Question4  = $('input#Question4:checked').val();
+
             $.ajax({
-                url: "/quiz",
-                type: "POST",
+                url: '/quiz',
+                type: 'POST',
                 data: {
                     _token: CSRF_TOKEN,
                     Question1: Question1,
@@ -101,255 +90,268 @@ $(function() {
                 },
                 cache: false,
                 success: function(data, textStatus) {
-                    // Enable button & show success message
-                    $("#quizSubmit").attr("disabled", false);
-                    $('#quizresults').html("<div class='alert alert-info'>");
-                    $('#quizresults > .alert-info').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
-                        .append("</button>");
+                    $('#quizSubmit').attr('disabled', false);
+                    $('#quizresults').html('<div class=\'alert alert-info\'>');
+                    $('#quizresults > .alert-info').html('<button type=\'button\' class=\'close\' data-dismiss=\'alert\' aria-hidden=\'true\'>&times;')
+                        .append('</button>');
                     $('#quizresults > .alert-info')
-                        .append("<strong>" + data + "</strong>");
+                        .append('<strong>' + data + '</strong>');
                     $('#quizresults > .alert-info')
                         .append('</div>');
 
-                    //clear all fields
-                    $('#quizForm').trigger("reset");
+                    $('#quizForm').trigger('reset');
                 },
                 error: function() {
-                    // Fail message
-                    $('#quizresults').html("<div class='alert alert-danger'>");
-                    $('#quizresults > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
-                        .append("</button>");
-                    $('#quizresults > .alert-danger').append("<strong>Something went wrong. Please try again.</strong>");
+
+                    $('#quizresults').html('<div class=\'alert alert-danger\'>');
+                    $('#quizresults > .alert-danger').html('<button type=\'button\' class=\'close\' data-dismiss=\'alert\' aria-hidden=\'true\'>&times;')
+                        .append('</button>');
+                    $('#quizresults > .alert-danger').append('<strong>Something went wrong. Please try again.</strong>');
                     $('#quizresults > .alert-danger').append('</div>');
-                    //clear all fields
-                    $('#quizForm').trigger("reset");
+
+                    $('#quizForm').trigger('reset');
                 },
             });
         },
         filter: function() {
-            return $(this).is(":visible");
+            return $(this).is(':visible');
         },
     });
 
-    $("a[data-toggle=\"tab\"]").click(function(e) {
+    $('a[data-toggle=\'tab\']').click(function(e) {
         e.preventDefault();
-        $(this).tab("show");
+        $(this).tab('show');
     });
 });
 
-// When clicking on Full hide fail/success boxes
 $('#Question1').focus(function() {
     $('#quizresults').html('');
 });
 
-/////////////////////////////////////
-// Weather function
-/////////////////////////////////////
+/**
+ * Weather Function
+ */
 
 $(function() {
 
-    $("#weatherForm input").jqBootstrapValidation({
+    $('#weatherForm input').jqBootstrapValidation({
         preventSubmit: true,
         submitError: function($form, event, errors) {
-            // additional error messages or events
         },
         submitSuccess: function($form, event) {
-            // Prevent spam click and default submit behaviour
-            $("#btnSubmit").attr("disabled", true);
+            $('#btnSubmit').attr('disabled', true);
             event.preventDefault();
-            
-            // get values from FORM
-            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-            var ZipCode = $("input#ZipCode").val();
+
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content'),
+                ZipCode    = $('input#ZipCode').val();
             $.ajax({
-                url: "/weather",
-                type: "POST",
+                url: '/weather',
+                type: 'POST',
                 data: {
-                    _token: CSRF_TOKEN,
+                    _token : CSRF_TOKEN,
                     ZipCode: ZipCode
                 },
                 cache: false,
                 success: function(data, textStatus) {
-                    // Enable button & show success message
-                    $("#weather").append(data);
-                    //clear all fields
-                    $('#weatherForm').trigger("reset");
+                    $('#weather').append(data);
+                    $('#weatherForm').trigger('reset');
                 },
                 error: function() {
-                    // Fail message
-                    $('#weather').html("<div class='alert alert-danger'>");
-                    $('#weather > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
-                        .append("</button>");
-                    $('#weather > .alert-danger').append("<strong>Something went wrong. Please try again.</strong>");
+                    $('#weather').html('<div class=\'alert alert-danger\'>');
+                    $('#weather > .alert-danger').html('<button type=\'button\' class=\'close\' data-dismiss=\'alert\' aria-hidden=\'true\'>&times;')
+                        .append('</button>');
+                    $('#weather > .alert-danger').append('<strong>Something went wrong. Please try again.</strong>');
                     $('#weather > .alert-danger').append('</div>');
-                    //clear all fields
-                    $('#weatherForm').trigger("reset");
+                    $('#weatherForm').trigger('reset');
                 },
             });
         },
         filter: function() {
-            return $(this).is(":visible");
+            return $(this).is(':visible');
         },
     });
 
-    $("a[data-toggle=\"tab\"]").click(function(e) {
+    $('a[data-toggle=\'tab\']').click(function(e) {
         e.preventDefault();
-        $(this).tab("show");
+        $(this).tab('show');
     });
 });
 
-// When clicking on Full hide fail/success boxes
 $('#ZipCode').focus(function() {
     $('#weather').html('');
 });
 
-/////////////////////////////////////
-// Contact Form Function
-/////////////////////////////////////
+/**
+ * Contact Form Function
+ */
 
 $(function() {
 
-    $("#modalContactForm input,#modalContactForm textarea").jqBootstrapValidation({
+    $('#modalContactForm input,#modalContactForm textarea').jqBootstrapValidation({
         preventSubmit: true,
         submitError: function($form, event, errors) {
-            // additional error messages or events
         },
         submitSuccess: function($form, event) {
-            // Prevent spam click and default submit behaviour
-            $("#btnSubmit").attr("disabled", true);
+            $('#btnSubmit').attr('disabled', true);
             event.preventDefault();
             
-            // get values from FORM
-            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-            var name = $("input#contactname").val();
-            var email = $("input#contactemail").val();
-            var message = $("textarea#contactmessage").val();
-            var firstName = name; // For Success/Failure Message
-            // Check for white space in name for Success/Fail message
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content'),
+                name       = $('input#contactname').val(),
+                email      = $('input#contactemail').val(),
+                message    = $('textarea#contactmessage').val();
+                firstName  = name;
+
             if (firstName.indexOf(' ') >= 0) {
                 firstName = name.split(' ').slice(0, -1).join(' ');
             }
+
             $.ajax({
-                url: "/contact",
-                type: "POST",
+                url: '/contact',
+                type: 'POST',
                 data: {
-                    _token: CSRF_TOKEN,
-                    name: name,
-                    email: email,
+                    _token : CSRF_TOKEN,
+                    name   : name,
+                    email  : email,
                     message: message
                 },
                 cache: false,
                 success: function() {
-                    // Enable button & show success message
-                    $("#btnSubmit").attr("disabled", false);
-                    $('#successmodal').html("<div class='alert alert-success'>");
-                    $('#successmodal > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
-                        .append("</button>");
+                    $('#btnSubmit').attr('disabled', false);
+                    $('#successmodal').html('<div class=\'alert alert-success\'>');
+                    $('#successmodal > .alert-success').html('<button type=\'button\' class=\'close\' data-dismiss=\'alert\' aria-hidden=\'true\'>&times;')
+                        .append('</button>');
                     $('#successmodal > .alert-success')
-                        .append("<strong>Your message has been sent. </strong>");
+                        .append('<strong>Your message has been sent. </strong>');
                     $('#successmodal > .alert-success')
                         .append('</div>');
-
-                    //clear all fields
-                    $('#modalContactForm').trigger("reset");
+                    $('#modalContactForm').trigger('reset');
                 },
                 error: function() {
-                    // Fail message
-                    $('#successmodal').html("<div class='alert alert-danger'>");
-                    $('#successmodal > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
-                        .append("</button>");
-                    $('#successmodal > .alert-danger').append("<strong>Sorry " + firstName + ", it seems that my mail server is not responding. Please try again later!");
+                    $('#successmodal').html('<div class=\'alert alert-danger\'>');
+                    $('#successmodal > .alert-danger').html('<button type=\'button\' class=\'close\' data-dismiss=\'alert\' aria-hidden=\'true\'>&times;')
+                        .append('</button>');
+                    $('#successmodal > .alert-danger').append('<strong>Sorry ' + firstName + ', it seems that my mail server is not responding. Please try again later!');
                     $('#successmodal > .alert-danger').append('</div>');
-                    //clear all fields
-                    $('#modalContactForm').trigger("reset");
+                    $('#modalContactForm').trigger('reset');
                 },
             });
         },
         filter: function() {
-            return $(this).is(":visible");
+            return $(this).is(':visible');
         },
     });
 
-    $("a[data-toggle=\"tab\"]").click(function(e) {
+    $('a[data-toggle=\'tab\']').click(function(e) {
         e.preventDefault();
-        $(this).tab("show");
+        $(this).tab('show');
     });
 });
 
-// When clicking on Full hide fail/success boxes
 $('#name').focus(function() {
     $('#successmodal').html('');
 });
 
-/////////////////////////////////////
-// UnitConversion Function
-/////////////////////////////////////
+/**
+ * Unit Conversion Function
+ */
 
 $(function() {
 
-    $("#convertMetric input, #convertStandard input").jqBootstrapValidation({
+    $('#convertMetric input, #convertStandard input').jqBootstrapValidation({
         preventSubmit: true,
         submitError: function($form, event, errors) {
-            // additional error messages or events
         },
         submitSuccess: function($form, event) {
-            // Prevent spam click and default submit behaviour
-            $("#btnSubmit").attr("disabled", true);
+            $('#btnSubmit').attr('disabled', true);
             event.preventDefault();
             
-            // get values from FORM
-            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-            var frmname = $('input#frmname').val();
-            var amount = $("input#unitAmount").val();
-            var unit = $("#unit option:selected").val();
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content'),
+                frmname    = $('input#frmname').val(),
+                amount     = $('input#unitAmount').val(),
+                unit       = $('#unit option:selected').val();
             $.ajax({
-                url: "/unitConversion",
-                type: "POST",
+                url: '/unitConversion',
+                type: 'POST',
                 data: {
-                    _token: CSRF_TOKEN,
+                    _token : CSRF_TOKEN,
                     frmname: frmname,
-                    amount: amount,
-                    unit: unit
+                    amount : amount,
+                    unit   : unit
                 },
                 cache: false,
                 success: function(data, textStatus) {
-                    // Enable button & show success message
-                    $('#unitconversion').html("<div class='alert alert-info'>");
-                    $('#unitconversion > .alert-info').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
-                        .append("</button>");
+                    $('#unitconversion').html('<div class=\'alert alert-info\'>');
+                    $('#unitconversion > .alert-info').html('<button type=\'button\' class=\'close\' data-dismiss=\'alert\' aria-hidden=\'true\'>&times;')
+                        .append('</button>');
                     $('#unitconversion > .alert-info')
-                        .append("<strong>" + data + "</strong>");
+                        .append('<strong>' + data + '</strong>');
                     $('#unitconversion > .alert-info')
                         .append('</div>');
 
-                    //clear all fields
-                    $('#convertMetric').trigger("reset");
-                    $('#convertStandard').trigger("reset");
+                    $('#convertMetric').trigger('reset');
+                    $('#convertStandard').trigger('reset');
                 },
                 error: function() {
-                    // Fail message
-                    $('#unitconversion').html("<div class='alert alert-danger'>");
-                    $('#unitconversion > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
-                        .append("</button>");
-                    $('#unitconversion > .alert-danger').append("<strong>Something went wrong. Please try again! </strong>");
+                    $('#unitconversion').html('<div class=\'alert alert-danger\'>');
+                    $('#unitconversion > .alert-danger').html('<button type=\'button\' class=\'close\' data-dismiss=\'alert\' aria-hidden=\'true\'>&times;')
+                        .append('</button>');
+                    $('#unitconversion > .alert-danger').append('<strong>Something went wrong. Please try again! </strong>');
                     $('#unitconversion > .alert-danger').append('</div>');
-                    //clear all fields
-                    $('#convertMetric').trigger("reset");
+                    $('#convertMetric').trigger('reset');
                 },
             });
         },
         filter: function() {
-            return $(this).is(":visible");
+            return $(this).is(':visible');
         },
     });
 
-    $("a[data-toggle=\"tab\"]").click(function(e) {
+    $('a[data-toggle=\'tab\']').click(function(e) {
         e.preventDefault();
-        $(this).tab("show");
+        $(this).tab('show');
     });
 });
 
-// When clicking on Full hide fail/success boxes
 $('#unitAmount').focus(function() {
     $('#unitconversion').html('');
+});
+
+/**
+ * Add Task Function
+ */
+
+$(function() {
+
+    $('#taskForm input').jqBootstrapValidation({
+        preventSubmit: true,
+        submitError: function($form, event, errors) {
+        },
+        submitSuccess: function($form, event) {
+            $('#btnSubmit').attr('disabled', true);
+            event.preventDefault();
+
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content'),
+                title      = $('input#title').val(),
+                body       = $('input#body').val();
+
+            $.ajax({
+                url: '/tasks/add',
+                type: 'POST',
+                data: {
+                    _token: CSRF_TOKEN,
+                    title : title,
+                    body  : body,
+                },
+                cache: false,
+                error: function() {
+                    $('#failure').html('<div class=\'alert alert-danger\'>');
+                    $('#failure > .alert-danger').html('<button type=\'button\' class=\'close\' data-dismiss=\'alert\' aria-hidden=\'true\'>&times;')
+                        .append('</button>');
+                    $('#failure > .alert-danger').append('<strong>Something went wrong. Please try again.</strong>');
+                    $('#failure > .alert-danger').append('</div>');
+                    $('#taskForm').trigger('reset');
+                },
+            });
+        },
+    });
 });

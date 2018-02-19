@@ -8,11 +8,12 @@ use WrightWayWeb\Magic;
 class MagicController extends Controller
 {
     public function index(){
-    	return view('magic.index');
+        return view('magic.index');
     }
+
     public function show(){
         $question = request('question');
-    	$answers  = [
+        $answers  = [
             'Heck no!',
             'How should I know?',
             'Extremely Unlikely',
@@ -21,8 +22,8 @@ class MagicController extends Controller
             'Hard to say...try again'
         ];
 
-    	srand((double)microtime() * 1000000);
-    	
+        srand((double)microtime() * 1000000);
+        
         $response = $question ? $answers [rand(0, (sizeof($answers)-1))] : "I can only answer";
 
         return response()->json($response, 200);

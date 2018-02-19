@@ -9,18 +9,18 @@ class QuizController extends Controller
 {
     public function index() 
     {
-    	return view('quiz.index');
+        return view('quiz.index');
     }
 
     public function results()
     {
-    	//validate that all questions have been answered
-    	$this->validate(request(), [
-    		'Question1' => 'required',
-    		'Question2' => 'required',
-    		'Question3' => 'required',
-    		'Question4' => 'required'
-    		]);
+
+        $this->validate(request(), [
+            'Question1' => 'required',
+            'Question2' => 'required',
+            'Question3' => 'required',
+            'Question4' => 'required'
+            ]);
 
         $totalCorrect = 0;
 

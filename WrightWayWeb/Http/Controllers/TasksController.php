@@ -18,18 +18,19 @@ class TasksController extends Controller
 
         return view('tasks.index', compact('tasks'));
     }
+
     public function show(Task $task)
     {
         return view('tasks.show', compact('task'));
     }
+
     public function addTask()
     {
-        //Creates new task
         $newtask          = new Task;
         $newtask->user_id = Auth::user()->id;
         $newtask->body    = request('body');
         $newtask->title   = request('title');
-        //Saves task to dB
+
         $newtask->save();
 
         echo <<<JavaScript
@@ -39,6 +40,7 @@ class TasksController extends Controller
 </script>
 JavaScript;
     }
+
     public function completed()
     {
         $task_id = request('task_id');
